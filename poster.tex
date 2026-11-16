@@ -144,31 +144,29 @@
 
 \begin{block}{3D localization on held-out IBL mice}
   \centering
-  \includegraphics[width=0.74\linewidth]{figures/fig2_ibl_localization.png}
+  \includegraphics[width=0.95\linewidth]{figures/fig2_ibl_localization.png}
   \raggedright
   \begin{itemize}
-    \item Frozen MaskPred+\MD{} encoder; (d) shows raw $\rightarrow$ pooled $\rightarrow$ Kabsch, (e--h) compare with ViT/AnyNet per region, subject, probe and lab.
+    \item Frozen MaskPred+\MD{}; (d) raw $\rightarrow$ pooled $\rightarrow$ Kabsch.
     \item Per-probe 3D RMSE (118 probes): \LF{} Transformer \textbf{1012~µm} vs.\ linear 1332, AnyNet 1484, ViT 1576~µm.
     \item Adding micromanipulator coordinates: \textbf{710~µm} vs.\ 790~µm for the micromanipulator alone.
   \end{itemize}
 \end{block}
 
-\begin{block}{Code \& models}
-  \begin{minipage}[c]{0.27\linewidth}
-    \qrcode[height=5.5cm]{https://www.neuroinformaticslab.com/lfpformer}
+\begin{block}{Code, models \& references}
+  \begin{minipage}[c]{0.22\linewidth}
+    \qrcode[height=4.6cm]{https://www.neuroinformaticslab.com/lfpformer}
   \end{minipage}\hfill
-  \begin{minipage}[c]{0.70\linewidth}
-    \normalsize
-    \textbf{Project page}\\ neuroinformaticslab.com/lfpformer\\[0.6ex]
-    \textbf{Code}\\ github.com/neuroinfolab/LFPformer\\[0.6ex]
-    \textbf{Pretrained Large encoders}\\ huggingface.co/Shubhronyu
+  \begin{minipage}[c]{0.75\linewidth}
+    \normalsize\raggedright
+    \textbf{Project page:} neuroinformaticslab.com/lfpformer\\
+    \textbf{Code:} github.com/neuroinfolab/LFPformer\\
+    \textbf{Encoders:} huggingface.co/Shubhronyu
   \end{minipage}
 
-\end{block}
-
-\begin{block}{References \& acknowledgements}
+  \vspace{0.8ex}
   \footnotesize
-  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.\\[0.5ex]
+  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.
   Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
 \end{block}
 
