@@ -39,3 +39,5 @@ slightly, so check that no column runs into the footer.
 
 The layout uses the [Gemini](https://github.com/anishathalye/gemini) beamerposter theme
 (MIT, see `LICENSE.md`) with the NYU colour theme from the Lfp2vec NeurIPS 2025 poster.
+
+Icons in `logos/icons/`: GitHub mark and globe from [Octicons](https://github.com/primer/octicons) (MIT); the Hugging Face and Google Cloud logos are trademarks of their owners, used to point to those resources and to acknowledge funding.

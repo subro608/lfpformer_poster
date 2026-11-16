@@ -44,6 +44,15 @@
   \end{beamercolorbox}}
 \setbeamercolor{takeaway}{fg=black,bg=nyupurple!8}
 
+
+% QR code with an icon and label underneath: {icon}{label}{url}{short url}
+\newcommand{\qrpanel}[4]{%
+  \begin{minipage}[t]{0.32\linewidth}\centering
+    \qrcode[height=4.4cm]{#3}\\[0.6ex]
+    \raisebox{-0.25em}{\includegraphics[height=1.3em]{logos/icons/#1.pdf}}~\textbf{#2}\\[-0.2ex]
+    {\scriptsize #4}
+  \end{minipage}}
+
 % ====================
 % Lengths: 4 columns
 % (N+1)*sepwidth + N*colwidth = paperwidth
@@ -212,36 +221,39 @@
   \raggedright
   \vspace{-1.5ex}
   \begin{itemize}
-    \item Five sessions (July, October; 19.4~h) from one mouse on a probe type and lab never seen in training; IBL-trained model, nothing fit to this animal.
-    \item Predicted layout (deep cortex shallow, dorsal hippocampus along the shank) holds across hours and days; no histology, so consistency, not accuracy.
-    \item Maze vs.\ home cage decoded at \textbf{0.863~$\pm$~0.036} vs.\ 0.692 for an elapsed-time control.
+    \item One mouse, five sessions over four months, new lab and probe type; IBL-trained model, nothing fit to this animal.
+    \item Predicted layout holds across hours and days (no histology, so consistency, not accuracy).
+    \item Maze vs.\ home cage: \textbf{0.863~$\pm$~0.036} vs.\ 0.692 for an elapsed-time control.
   \end{itemize}
 \end{block}
 
 \begin{block}{Conclusions and Limitations}
   \begin{itemize}
-    \item Acquisition geometry is a useful, histology-free training signal for LFP foundation models.
-    \item \MD{} and even \CD{} approach the \CCF{} oracle with Transformer readouts.
+    \item Acquisition geometry is a useful, histology-free training signal; \MD{} and \CD{} approach the \CCF{} oracle with Transformer readouts.
     \item LFP features and insertion records are complementary.
-    \item The coordinate readout still needs anatomical labels, and $\sim$0.7--1~mm error is not yet a replacement for histology.
+    \item Readouts still need anatomical labels; $\sim$0.7--1~mm error does not yet replace histology.
   \end{itemize}
 \end{block}
 
-\begin{block}{Code and References}
-  \begin{minipage}[c]{0.22\linewidth}
-    \qrcode[height=4.6cm]{https://www.neuroinformaticslab.com/lfpformer}
+\begin{block}{Code, Models and Acknowledgements}
+  \centering
+  \qrpanel{globe}{Website}{https://www.neuroinformaticslab.com/lfpformer}{neuroinformaticslab.com/lfpformer}\hfill
+  \qrpanel{github}{GitHub}{https://github.com/neuroinfolab/LFPformer}{neuroinfolab/LFPformer}\hfill
+  \qrpanel{huggingface}{Hugging Face}{https://huggingface.co/Shubhronyu}{huggingface.co/Shubhronyu}
+
+  \vspace{1.2ex}
+  \begin{minipage}[c]{0.30\linewidth}
+    \includegraphics[width=\linewidth]{logos/icons/google_cloud.pdf}
   \end{minipage}\hfill
-  \begin{minipage}[c]{0.75\linewidth}
-    \normalsize\raggedright
-    \textbf{Project:} neuroinformaticslab.com/lfpformer\\
-    \textbf{Code:} github.com/neuroinfolab/LFPformer\\
-    \textbf{Encoders:} huggingface.co/Shubhronyu
+  \begin{minipage}[c]{0.66\linewidth}
+    \raggedright\small
+    We thank \textbf{Google Cloud} for \textbf{\$20K} in support through a Google Cloud Research Award (RD157).
   \end{minipage}
 
-  \vspace{0.8ex}
-  \footnotesize
+  \vspace{1ex}
+  \raggedright\footnotesize
+  Also supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782.
   He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.
-  Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
 \end{block}
 
 \end{column}
