@@ -146,6 +146,7 @@
   \centering
   \includegraphics[width=0.92\linewidth]{figures/fig2ad_ibl_localization.png}
   \raggedright
+  \vspace{-1.5ex}
   \begin{itemize}
     \item Frozen MaskPred+\MD{} encoder; per-probe 3D error over 118 probes: Transformer readout \textbf{1012~µm} vs.\ linear 1332, AnyNet 1484, ViT 1576~µm.
     \item Adding micromanipulator coordinates: \textbf{710~µm} vs.\ 790~µm for the micromanipulator alone.
@@ -156,6 +157,7 @@
   \centering
   \includegraphics[width=\linewidth]{figures/fig4_scaling.png}
   \raggedright
+  \vspace{-1.5ex}
   \begin{itemize}
     \item Up to 58.88M chunks; base (95.1M) vs.\ large (317.5M) encoders. \MD{} and \CCF{} improve early then plateau; Transformer readouts narrow the gap, and larger encoders do not consistently help.
   \end{itemize}
@@ -171,17 +173,28 @@
   \centering
   \includegraphics[width=\linewidth]{figures/fig3a_region_classification.png}
   \raggedright
+  \vspace{-1.5ex}
   \begin{itemize}
-    \item Allen (116), IBL (309), NeuroNexus (5 classes); striped = zero-shot.
-    \item New probe type (NeuroNexus, 7 held-out sessions): fine-tuned \CD{} \textbf{0.634~$\pm$~0.089} balanced acc.\ vs.\ \MD{} 0.606, AnyNet 0.550, ViT 0.527; frozen \CD{} 0.570.
+    \item New probe type (NeuroNexus, 7 held-out sessions): fine-tuned \CD{} \textbf{0.634~$\pm$~0.089} balanced acc.\ vs.\ \MD{} 0.606, AnyNet 0.550, ViT 0.527.
     \item IBL-pretrained \CD{} beats Allen-pretrained \CD{} on Allen ($\dagger$).
+  \end{itemize}
+\end{block}
+
+\begin{block}{Mouse-to-Macaque Transfer}
+  \centering
+  \includegraphics[width=\linewidth]{figures/supp_fig8ab_macaque.png}
+  \raggedright
+  \vspace{-1.5ex}
+  \begin{itemize}
+    \item Fine-tuned on monkey A, tested on monkey B: \MD{} \textbf{0.37~$\pm$~0.20} bal.\ acc.\ vs.\ ViT 0.26, Ridge 0.20 (2 animals).
   \end{itemize}
 \end{block}
 
 \begin{block}{Embeddings Follow LFP Spectra}
   \centering
-  \includegraphics[width=\linewidth]{figures/fig6_cca_spectra.png}
+  \includegraphics[width=0.9\linewidth]{figures/fig6_cca_spectra.png}
   \raggedright
+  \vspace{-1.5ex}
   \begin{itemize}
     \item CCA of frozen embeddings vs.\ per-channel log power spectra (39,615 channels). C1: low frequency vs.\ $>$200~Hz; C2: broadband; C3: high gamma.
   \end{itemize}
@@ -197,6 +210,7 @@
   \centering
   \includegraphics[width=\linewidth]{figures/supp_fig17_chronic_np2.png}
   \raggedright
+  \vspace{-1.5ex}
   \begin{itemize}
     \item Five sessions (July, October; 19.4~h) from one mouse on a probe type and lab never seen in training; IBL-trained model, nothing fit to this animal.
     \item Predicted layout (deep cortex shallow, dorsal hippocampus along the shank) holds across hours and days; no histology, so consistency, not accuracy.

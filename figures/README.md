@@ -10,6 +10,7 @@ the vector page region rendered at 600 dpi.
 | `fig1_overview.png` | Fig. 1, method overview | yes (column 1) |
 | `fig2ad_ibl_localization.png` | Fig. 2a–d (panels e–h removed) | yes (column 2) |
 | `fig3a_region_classification.png` | Fig. 3a + legend (panel b ROC curves removed) | yes (column 3) |
+| `supp_fig8ab_macaque.png` | Supp. Fig. 8a–b (PCA panel c removed) | yes (column 3) |
 | `supp_fig17_chronic_np2.png` | Fig. 17 (App. M), zero-shot chronic Neuropixels 2.0 | yes (column 4) |
 | `fig4_scaling.png` | Fig. 4, data / decoder / compute scaling | yes (column 2) |
 | `fig6_cca_spectra.png` | Fig. 6, embeddings vs. LFP spectra (CCA) | yes (column 3) |
