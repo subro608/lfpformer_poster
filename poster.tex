@@ -106,7 +106,7 @@
 % ------------------------------------------------------------------ column 1
 \begin{column}{\colwidth}
 
-\begin{block}{TL;DR}
+\begin{block}{Overview}
   \textbf{Question.} Can the \emph{acquisition geometry} of a recording (probe layout, insertion log) teach a foundation model where an LFP channel sits in the brain, with no histology during pretraining?
 
   \textbf{Approach.} \LF{} adds one geometry-aware contrastive loss to audio-pretrained wav2vec~2.0: chunks recorded close together are pulled together, distant ones pushed apart.
@@ -114,7 +114,7 @@
   \textbf{Findings.} Embeddings organise by anatomy, beat supervised spectrogram models at 3D localization, transfer across labs, probes and species, and track regional LFP spectra.
 \end{block}
 
-\begin{block}{LFPformer: method}
+\begin{block}{Method}
   \centering
   \includegraphics[width=\linewidth]{figures/fig1_overview.png}
   \raggedright
@@ -142,32 +142,23 @@
 % ------------------------------------------------------------------ column 2
 \begin{column}{\colwidth}
 
-\begin{block}{3D localization on held-out IBL mice}
+\begin{block}{3D Localization in Held-Out Mice}
   \centering
-  \includegraphics[width=0.95\linewidth]{figures/fig2_ibl_localization.png}
+  \includegraphics[width=0.92\linewidth]{figures/fig2ad_ibl_localization.png}
   \raggedright
   \begin{itemize}
-    \item Frozen MaskPred+\MD{}; (d) raw $\rightarrow$ pooled $\rightarrow$ Kabsch.
-    \item Per-probe 3D RMSE (118 probes): \LF{} Transformer \textbf{1012~µm} vs.\ linear 1332, AnyNet 1484, ViT 1576~µm.
+    \item Frozen MaskPred+\MD{} encoder; per-probe 3D error over 118 probes: Transformer readout \textbf{1012~µm} vs.\ linear 1332, AnyNet 1484, ViT 1576~µm.
     \item Adding micromanipulator coordinates: \textbf{710~µm} vs.\ 790~µm for the micromanipulator alone.
   \end{itemize}
 \end{block}
 
-\begin{block}{Code, models \& references}
-  \begin{minipage}[c]{0.22\linewidth}
-    \qrcode[height=4.6cm]{https://www.neuroinformaticslab.com/lfpformer}
-  \end{minipage}\hfill
-  \begin{minipage}[c]{0.75\linewidth}
-    \normalsize\raggedright
-    \textbf{Project page:} neuroinformaticslab.com/lfpformer\\
-    \textbf{Code:} github.com/neuroinfolab/LFPformer\\
-    \textbf{Encoders:} huggingface.co/Shubhronyu
-  \end{minipage}
-
-  \vspace{0.8ex}
-  \footnotesize
-  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.
-  Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
+\begin{block}{Scaling Data, Decoders and Compute}
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig4_scaling.png}
+  \raggedright
+  \begin{itemize}
+    \item Up to 58.88M chunks; base (95.1M) vs.\ large (317.5M) encoders. \MD{} and \CCF{} improve early then plateau; Transformer readouts narrow the gap, and larger encoders do not consistently help.
+  \end{itemize}
 \end{block}
 
 \end{column}
@@ -176,17 +167,33 @@
 % ------------------------------------------------------------------ column 3
 \begin{column}{\colwidth}
 
-\begin{block}{Region classification across datasets}
+\begin{block}{Brain Region Classification}
   \centering
   \includegraphics[width=\linewidth]{figures/fig3a_region_classification.png}
   \raggedright
   \begin{itemize}
     \item Allen (116), IBL (309), NeuroNexus (5 classes); striped = zero-shot.
     \item New probe type (NeuroNexus, 7 held-out sessions): fine-tuned \CD{} \textbf{0.634~$\pm$~0.089} balanced acc.\ vs.\ \MD{} 0.606, AnyNet 0.550, ViT 0.527; frozen \CD{} 0.570.
+    \item IBL-pretrained \CD{} beats Allen-pretrained \CD{} on Allen ($\dagger$).
   \end{itemize}
 \end{block}
 
-\begin{block}{Chronic Neuropixels 2.0, zero-shot}
+\begin{block}{Embeddings Follow LFP Spectra}
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig6_cca_spectra.png}
+  \raggedright
+  \begin{itemize}
+    \item CCA of frozen embeddings vs.\ per-channel log power spectra (39,615 channels). C1: low frequency vs.\ $>$200~Hz; C2: broadband; C3: high gamma.
+  \end{itemize}
+\end{block}
+
+\end{column}
+\separatorcolumn
+
+% ------------------------------------------------------------------ column 4
+\begin{column}{\colwidth}
+
+\begin{block}{Zero-Shot on a Chronic Implant}
   \centering
   \includegraphics[width=\linewidth]{figures/supp_fig17_chronic_np2.png}
   \raggedright
@@ -197,39 +204,30 @@
   \end{itemize}
 \end{block}
 
-
-\end{column}
-\separatorcolumn
-
-% ------------------------------------------------------------------ column 4
-\begin{column}{\colwidth}
-
-\begin{block}{Data, decoder \& compute scaling}
-  \centering
-  \includegraphics[width=\linewidth]{figures/fig4_scaling.png}
-  \raggedright
-  \begin{itemize}
-    \item Up to 58.88M chunk presentations; base (95.1M) vs.\ large (317.5M) encoders.
-    \item \MD{} and \CCF{} improve early then plateau, below \MP{} and \CD. Transformer readouts narrow the gap; larger encoders do not consistently help.
-  \end{itemize}
-\end{block}
-
-\begin{block}{What do the embeddings encode?}
-  \centering
-  \includegraphics[width=0.95\linewidth]{figures/fig6_cca_spectra.png}
-  \raggedright
-  \begin{itemize}
-    \item CCA of frozen embeddings vs.\ per-channel log power spectra (39,615 channels). C1: low frequency vs.\ $>$200~Hz; C2: broadband; C3: high gamma.
-  \end{itemize}
-\end{block}
-
-\begin{block}{Take-aways \& limitations}
+\begin{block}{Conclusions and Limitations}
   \begin{itemize}
     \item Acquisition geometry is a useful, histology-free training signal for LFP foundation models.
     \item \MD{} and even \CD{} approach the \CCF{} oracle with Transformer readouts.
     \item LFP features and insertion records are complementary.
     \item The coordinate readout still needs anatomical labels, and $\sim$0.7--1~mm error is not yet a replacement for histology.
   \end{itemize}
+\end{block}
+
+\begin{block}{Code and References}
+  \begin{minipage}[c]{0.22\linewidth}
+    \qrcode[height=4.6cm]{https://www.neuroinformaticslab.com/lfpformer}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.75\linewidth}
+    \normalsize\raggedright
+    \textbf{Project:} neuroinformaticslab.com/lfpformer\\
+    \textbf{Code:} github.com/neuroinfolab/LFPformer\\
+    \textbf{Encoders:} huggingface.co/Shubhronyu
+  \end{minipage}
+
+  \vspace{0.8ex}
+  \footnotesize
+  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.
+  Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
 \end{block}
 
 \end{column}
