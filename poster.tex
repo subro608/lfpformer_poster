@@ -139,7 +139,7 @@
   \begin{itemize}
     \item \CD: channel spacing on the probe itself
     \item \MD: insertion line from the micromanipulator log
-    \item \CCF: histology coordinates (oracle reference)
+    \item \CCF: histology coordinates (only used as oracle reference)
   \end{itemize}
 
   \textbf{Read out} a mean and uncertainty per chunk (Gaussian NLL), \textbf{pool} per channel with weights $1/\hat\sigma^2$, and rigidly fit the known probe geometry (\textbf{Kabsch}); no test anatomy enters the fit.
@@ -189,7 +189,7 @@
   \end{itemize}
 \end{block}
 
-\begin{block}{Mouse-to-Macaque Transfer}
+\begin{block}{Mice-to-Macaque Transfer}
   \centering
   \includegraphics[width=\linewidth]{figures/supp_fig8ab_macaque.png}
   \raggedright
