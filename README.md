@@ -18,7 +18,16 @@ make            # uses tectonic (conda install -c conda-forge tectonic)
 latexmk -lualatex poster.tex
 ```
 
-Fonts are loaded from `fonts/Roboto/static/`, so no system fonts are needed.
+Under XeLaTeX/LuaLaTeX the fonts are loaded from `fonts/Roboto/static/`, so no
+system fonts are needed. Under pdfLaTeX the theme falls back to TeX Live's
+`roboto` package (same typeface).
+
+### Overleaf
+
+Import the repo (New Project → Import from GitHub, or upload the zip). Any
+compiler works; **XeLaTeX** (Menu → Settings → Compiler) gives exactly the
+same output as `make`. With the default pdfLaTeX, glyph widths can differ
+slightly, so check that no column runs into the footer.
 
 ## Links
 

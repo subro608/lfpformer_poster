@@ -8,31 +8,51 @@
 \RequirePackage{exscale}
 \RequirePackage{ragged2e}
 \RequirePackage{changepage}
-\RequirePackage{fontspec}
 \RequirePackage{calc}
 
 % ====================
 % Fonts
 % ====================
 
-\newfontfamily\Raleway[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
-  UprightFont=Roboto_Condensed-Regular, BoldFont=Roboto_Condensed-Bold,
-  ItalicFont=Roboto_Condensed-Italic, BoldItalicFont=Roboto_Condensed-BoldItalic]{RobotoCondensed}
-\newfontfamily\Lato[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
-  UprightFont=Roboto-Regular, BoldFont=Roboto-Bold,
-  ItalicFont=Roboto-Italic, BoldItalicFont=Roboto-BoldItalic]{Roboto}
-
+% Works with every engine, so Overleaf's default (pdfLaTeX) compiles it too.
+% XeLaTeX/LuaLaTeX: Roboto from the bundled fonts/ folder via fontspec.
+% pdfLaTeX: Roboto from the TeX Live `roboto' package (same typeface).
 \usefonttheme{professionalfonts}
-
-\setsansfont{Roboto}[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
-  UprightFont=Roboto-Regular, ItalicFont=Roboto-Italic,
-  BoldFont=Roboto-Bold, BoldItalicFont=Roboto-BoldItalic]
+% Unicode engine test without iftex, whose older copies lack \ifxetexorluatex.
+\newif\ifgemini@unicode
+\ifdefined\XeTeXversion\gemini@unicodetrue\fi
+\ifdefined\directlua\gemini@unicodetrue\fi
+\ifgemini@unicode
+  \RequirePackage{fontspec}
+  \newfontfamily\Raleway[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
+    UprightFont=Roboto_Condensed-Regular, BoldFont=Roboto_Condensed-Bold,
+    ItalicFont=Roboto_Condensed-Italic, BoldItalicFont=Roboto_Condensed-BoldItalic]{RobotoCondensed}
+  \newfontfamily\Lato[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
+    UprightFont=Roboto-Regular, BoldFont=Roboto-Bold,
+    ItalicFont=Roboto-Italic, BoldItalicFont=Roboto-BoldItalic]{Roboto}
+  \setsansfont{Roboto}[Ligatures=TeX, Path=fonts/Roboto/static/, Extension=.ttf,
+    UprightFont=Roboto-Regular, ItalicFont=Roboto-Italic,
+    BoldFont=Roboto-Bold, BoldItalicFont=Roboto-BoldItalic]
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{textcomp}
+  \RequirePackage[sfdefault]{roboto}
+  \newcommand{\Raleway}{\robotocondensed}
+  \newcommand{\Lato}{\roboto}
+\fi
+% Bold series for titles: under pdfLaTeX \bfseries would drop the condensed
+% width, so use Roboto's bold-condensed series (bc) there.
+\ifgemini@unicode
+  \newcommand{\geminititleseries}{\bfseries}
+\else
+  \newcommand{\geminititleseries}{\fontseries{bc}\selectfont}
+\fi
 
 \setbeamerfont{headline}{family=\Raleway}
-\setbeamerfont{headline title}{size=\Huge,series=\bfseries}
+\setbeamerfont{headline title}{size=\Huge,series=\geminititleseries}
 \setbeamerfont{headline author}{size=\Large}
 \setbeamerfont{headline institute}{size=\normalsize}
-\setbeamerfont{block title}{family=\Raleway,size=\large,series=\bfseries}
+\setbeamerfont{block title}{family=\Raleway,size=\large,series=\geminititleseries}
 \setbeamerfont{heading}{family=\Lato,series=\bfseries}
 \setbeamerfont{caption}{size=\small}
 \setbeamerfont{footline}{family=\Raleway,size=\normalsize}
