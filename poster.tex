@@ -144,7 +144,7 @@
 
 \begin{block}{3D localization on held-out IBL mice}
   \centering
-  \includegraphics[width=0.92\linewidth]{figures/fig2_ibl_localization.png}
+  \includegraphics[width=0.74\linewidth]{figures/fig2_ibl_localization.png}
   \raggedright
   \begin{itemize}
     \item Frozen MaskPred+\MD{} encoder; (d) shows raw $\rightarrow$ pooled $\rightarrow$ Kabsch, (e--h) compare with ViT/AnyNet per region, subject, probe and lab.
@@ -166,6 +166,12 @@
 
 \end{block}
 
+\begin{block}{References \& acknowledgements}
+  \footnotesize
+  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.\\[0.5ex]
+  Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
+\end{block}
+
 \end{column}
 \separatorcolumn
 
@@ -174,29 +180,25 @@
 
 \begin{block}{Region classification across datasets}
   \centering
-  \includegraphics[width=\linewidth]{figures/fig3_region_classification.png}
+  \includegraphics[width=\linewidth]{figures/fig3a_region_classification.png}
   \raggedright
   \begin{itemize}
-    \item Allen (116 classes), IBL (309 regions), NeuroNexus (5 classes); striped = zero-shot.
+    \item Allen (116), IBL (309), NeuroNexus (5 classes); striped = zero-shot.
     \item New probe type (NeuroNexus, 7 held-out sessions): fine-tuned \CD{} \textbf{0.634~$\pm$~0.089} balanced acc.\ vs.\ \MD{} 0.606, AnyNet 0.550, ViT 0.527; frozen \CD{} 0.570.
-    \item IBL-pretrained \CD{} beats Allen-pretrained \CD{} on Allen.
   \end{itemize}
 \end{block}
 
-\begin{block}{Mouse $\rightarrow$ macaque transfer}
+\begin{block}{Chronic Neuropixels 2.0, zero-shot}
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/supp_fig8_macaque.png}
+  \includegraphics[width=\linewidth]{figures/supp_fig17_chronic_np2.png}
   \raggedright
   \begin{itemize}
-    \item Train on monkey A, test on monkey B (prefrontal areas 8, 45, 9/46). Fine-tuned mouse-pretrained \MD{} has the highest mean balanced accuracy (0.37~$\pm$~0.20); two animals only.
+    \item Five sessions (July, October; 19.4~h) from one mouse on a probe type and lab never seen in training; IBL-trained model, nothing fit to this animal.
+    \item Predicted layout (deep cortex shallow, dorsal hippocampus along the shank) holds across hours and days; no histology, so consistency, not accuracy.
+    \item Maze vs.\ home cage decoded at \textbf{0.863~$\pm$~0.036} vs.\ 0.692 for an elapsed-time control.
   \end{itemize}
 \end{block}
 
-\begin{block}{References \& acknowledgements}
-  \footnotesize
-  He et al., Lfp2vec, NeurIPS 2025 $\cdot$ Baevski et al., wav2vec 2.0, NeurIPS 2020 $\cdot$ IBL, Brain-Wide Map, Nature 2025 $\cdot$ Siegle et al., Nature 2021 $\cdot$ Kabsch, Acta Cryst.\ 1976 $\cdot$ Wang et al., bioRxiv 2025.\\[0.5ex]
-  Supported by NIMH R00MH128772, NINDS R00NS140554 and R01NS113782, and an NYU Google Cloud Research Award (RD157).
-\end{block}
 
 \end{column}
 \separatorcolumn
